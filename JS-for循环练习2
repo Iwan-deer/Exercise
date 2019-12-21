@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			//页面中接收一个用户输入的数字,判断该数字是否为质数
+			var num = prompt("请输入一个大于1的整数：");
+			if (num<=1){
+				alert("erro！");
+			}else{
+				var flag = true;
+				for(var i=2;i<num;i++){
+					if(num%i == 0){
+						flag = false;
+					}
+				}
+				if(flag){
+					alert(num + "是质数")
+				}else{
+					alert(num + "不是质数")
+				}
+			}
+			
+			for(var i=1 ; i<6 ; i++){
+				for(var j=0 ; j<i ; j++){
+					document.write("*")
+				}
+				document.write("<br />")
+			}
+			
+			
+			for(var i=1 ; i<6 ; i++){
+				for(var j=0 ; j<6-i ; j++){
+					document.write("*")
+				}
+				document.write("<br />")
+			}
+		</script>
+	</body>
+</html>
