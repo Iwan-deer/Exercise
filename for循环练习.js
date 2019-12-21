@@ -28,7 +28,6 @@
 						console.log(num);
 					 }
 				}
-				
 			</script>
 	</body>
 </html>
