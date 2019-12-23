@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.box{
+				width: 298px;
+				height: 198px;
+				border: 1px solid #ccc;
+				/* 块级盒子水平居中 */
+				margin: 100px auto;
+				background: url(images/line.jpg);
+				padding: 15px;
+			}
+			.box h1{
+				font-size: 18px;
+				border-bottom: 1px solid #ccc;
+				padding: 5px 0;
+				margin-bottom: 10px;
+			}
+			.box ul li{
+				/* 去掉列表的样式 */
+				list-style: none;
+				height: 30px;
+				/* dashed——虚线 */
+				border-bottom: 1px dashed #ccc;
+				/* 垂直居中 */
+				line-height: 30px;
+				background: url(images/arr.jpg) no-repeat 5px center;
+				/* 因为这里li没有宽度 所以padding没有撑开盒子 */
+				padding-left: 20px;
+			}
+			.box ul li a{
+				font-size: 12px;
+				/* 去除下划线 */
+				text-decoration: none ;
+				color: #333;
+				/* margin-left: 20px;
+				padding: 20px; */
+			}
+			/* 鼠标滑过出现下划线 */
+			.box ul li a:hover{
+				text-decoration: underline ;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<h1>最新文章/New Articles</h1>
+			<ul>
+				<li><a href="#">JAVA</a></li>
+				<li><a href="#">C</a></li>
+				<li><a href="#">Python</a></li>
+				<li><a href="#">C++</a></li>
+				<li><a href="#">JS</a></li>
+			</ul>
+		</div>
+	</body>
+</html>
