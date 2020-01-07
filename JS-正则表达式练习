@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/* //接受一个用户输入的用户名,并判断其合理性
+			var str = prompt("请输入您的用户名：");
+			//去除用户名前后的空格
+			str = str.replace(/^\s*|\s*$/g,"")
+			console.log(str) */
+			
+			//电子邮件的正则表达式
+			//任意字母数字下划线 【.任意字母数字下划线】 @ 任意数字字母 .任意字母(2-5位) 【.任意字母(2-5位)】
+			//  \w{3,}(\.\w+)*@[A-z0-9](\.[A-z]{2,5}){1,2}
+			var emailReg = /^\w{3,}(\.\w+)*@[A-z0-9]+(\.[A-z]{2,5}){1,2}$/;
+			var email = "zhaggsysdgdyu@adygsd.com";
+			console.log(emailReg.test(email));
+		</script>
+	</body>
+</html>
