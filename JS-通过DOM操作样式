@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#box01{
+				height: 300px;
+				width: 300px;
+				background-color: aquamarine;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload = function(){
+				var box01 = document.getElementById("box01");
+				
+				//点击按钮后修改box的大小
+				//给按钮添加点击响应函数
+				var btn01 = document.getElementById("btn01");
+				btn01.onclick = function(){
+					//修改box的宽度
+					box01.style.width = "200px";
+					box01.style.height = "200px";
+					box01.style.backgroundColor = "yellow";
+				};
+				
+				/* //点击按钮后读取元素样式(通过JS的style属性)
+				var btn02 = document.getElementById("btn02");
+				btn02.onclick = function(){
+					console.log(box01.style.height);
+				}; */
+				
+				/* //点击按钮后读取元素样式
+				//获取元素当前显示的样式
+				//currentStyle只有IE浏览器支持
+				var btn02 = document.getElementById("btn02");
+				btn02.onclick = function(){
+					console.log(box01.currentStyle.height);
+				}; */
+				
+				/* btn02.onclick = function(){
+					//使用getComputedStyle()方法获取元素样式
+				//该方法返回的是一个对象,对象中封装了当前元素的样式
+				alert(getComputedStyle(box01,null).width);
+				}; */
+				
+				//定义一个函数,用来获取指定元素的当前样式
+				/* 
+				 *参数: 
+				 * 		obj 要获取样式的元素
+				 * 		name 要获取的样式名
+				 */
+				function getStyle(obj,name){
+					if(window.getComputedStyle){
+						//正常浏览器
+						return getComputedStyle(obj,null)[name];
+					}else{
+						//IE8及以下浏览器
+						return obj.currentStyle[name];
+					}
+					
+					//或者使用三元运算符代替if语句
+					//return window.getComputedStyle?window.getComputedStyle(obj,null)[ame]:obj.currentStyle[name];
+					
+				}
+			};
+		</script>
+		
+	</head>
+	<body>
+		<button type="button" id="btn01">修改样式</button>
+		<button type="button" id="btn02">获取样式</button>
+		
+		<div id="box01"></div>
+		
+	</body>
+</html>
