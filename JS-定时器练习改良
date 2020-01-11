@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			#box {
+				width: 100px;
+				height: 100px;
+				background-color: #7FFFD4;
+				left:0;
+				position: absolute;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload = function(){
+				//获取div
+				var box = document.getElementById("box");
+				//获取btn
+				var btn = document.getElementById("btn");
+				var btn02 = document.getElementById("btn02");
+				//定义一个变量保存定时器
+				//var timer;
+				
+				//该函数用于获取元素的样式
+				function getStyle(obj,name){
+					if(window.getComputedStyle){
+						//正常浏览器
+						return getComputedStyle(obj,null)[name];
+					}else{
+						//IE8及以下浏览器
+						return obj.currentStyle[name];
+					}
+				}
+				
+				//尝试创建一个可以执行简单动画的函数
+				/* 
+				 * 参数：
+				 * 1.obj——要执行动画的对象
+				 * 2.attr——要修改的动画的样式
+				 * 3.target——执行动画的目标位置
+				 * 3.speed——移动的速度（speed为正向右，为负向左）
+				 * 4.callback——回调函数，将会在动画执行完毕后执行
+				 */
+				function move(obj,target,speed){
+					//在开启新的定时器之前需要将当前元素的其他定时器关闭
+					clearInterval(timer);
+					
+					//获取元素当前位置
+					var current = parseInt(getStyle(obj,attr));
+					
+					/* 判断speed的正负
+					 *如果从现在位置++为正;现在位置--为负
+					 */
+					if(current > target){
+						speed = -speed;
+					}
+					
+					//开启定时器，执行动画效果
+					obj.timer = setInterval(function(){
+						//获取元素当前位置
+						var oldValue = parseInt(getStyle(obj,attr));
+						
+						//修改元素的位置
+						var newValue = oldValue + speed;
+						
+						/* if(speed > 0 && newValue > target){
+							newValue = target;
+						}else if(speed < 0 && newValue < target){
+							newValue = 0;
+						} */
+						
+						if((speed > 0 && newValue > target) || (speed < 0 && newValue < target)){
+							newValue = target;
+						}
+						
+						obj.style[attr] = newValue + "px";
+						
+						//判断条件停止定时器
+						if(newValue == target){
+							clearInterval(obj.timer);
+							
+							//动画执行完毕,调用回调函数,判断是否有回调函数
+							callback && callback();
+						}
+						
+					},30);
+				}
+				
+				//绑定响应事件
+				btn.onclick = function(){
+					move(box,"left",800,10);
+				};
+				
+				//绑定响应事件
+				btn02.onclick = function(){
+					move(box,"left",0,10);
+				};
+				
+			};
+		</script>
+		
+	</head>
+	<body>
+		<button id="btn">点击按钮box会向右移动</button>
+		<button id="btn02">点击按钮box会向左移动</button>
+		<br /><br />
+		<div id="box"></div>
+	</body>
+</html>
