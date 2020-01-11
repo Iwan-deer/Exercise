@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			#box {
+				width: 100px;
+				height: 100px;
+				background-color: #7FFFD4;
+				left:0;
+				position: absolute;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload = function(){
+				//获取div
+				var box = document.getElementById("box");
+				//获取btn
+				var btn = document.getElementById("btn");
+				//定义一个变量保存定时器
+				var timer;
+				
+				//该函数用于获取元素的样式
+				function getStyle(obj,name){
+					if(window.getComputedStyle){
+						//正常浏览器
+						return getComputedStyle(obj,null)[name];
+					}else{
+						//IE8及以下浏览器
+						return obj.currentStyle[name];
+					}
+				}
+				
+				//绑定响应事件
+				btn.onclick = function(){
+					//在开启新的定时器之前需要将当前元素的其他定时器关闭
+					clearInterval(timer);
+					
+					//开启定时器，执行动画效果
+					timer = setInterval(function(){
+						//获取元素当前位置
+						var oldValue = parseInt(getStyle(box,"left"));
+						
+						//修改元素的位置
+						var newValue = oldValue + 10;
+						
+						if(newValue > 800){
+							newValue = 800;
+						}
+						
+						box.style.left = newValue + "px";
+						
+						//判断条件停止定时器
+						if(newValue == 800){
+							clearInterval(timer);
+						}
+						
+					},30);
+				};
+				
+			};
+		</script>
+		
+	</head>
+	<body>
+		<button id="btn">点击按钮box会向右移动</button>
+		<br /><br />
+		<div id="box"></div>
+	</body>
+</html>
