@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="a">
+				<!-- 遍历过程中没有使用元素的索引值 -->
+        <ul>
+            <li v-for="item in names">{{item}}</li>
+				</ul>
+				
+				<!-- 遍历过程中使用到元素下标值 -->
+				<ul>
+					<li v-for="(item,index) in names">{{(index + 1) + item}}</li>
+				</ul>
+		</div>
+		
+		<div id="b">
+			<!-- 在遍历对象的对象中，如果只获取一个值，那么获取到的是value -->
+			<ul>
+				<li v-for="item in message">{{item}}</li>
+			</ul>
+
+			<!-- 如果要同时获取key & value 格式: (value,key) -->
+			<ul>
+				<li v-for="(value,key) in message">{{value}} - {{key}}</li>
+			</ul>
+
+			<!-- 同时获取key & value & index -->
+			<ul>
+				<li v-for="(value,key,index) in message">{{index+1}} - {{key}} - {{value}}</li>
+			</ul>
+		</div>
+
+    <script>
+        const a = new Vue({
+            el:"#a",
+            data:{
+							names:["tom","marry","jack"]
+						}
+        })
+
+				const b = new Vue({
+					el:"#b",
+					data: {
+						message: {
+							name: "Bobb",
+							age: 18,
+							sex: "man"
+						}
+					}
+				})
+    </script>
+</body>
+</html>
